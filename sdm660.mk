@@ -278,9 +278,13 @@ PRODUCT_PACKAGES += \
     android.hardware.power-service.lineage-libperfmgr \
     libqti-perfd-client
 
+ifneq ($(filter twolip whyred,$(TARGET_DEVICE)),)
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/powerhint_636.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint_636.json \
+    $(LOCAL_PATH)/configs/powerhint_636.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+else
+PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+endif
 
 PRODUCT_SOONG_NAMESPACES += \
     hardware/google/interfaces \
